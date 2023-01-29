@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    <title>Store</title>
+{% endblock title %}
+
+
+{% block content %}
+
+{% load static %}
+
+<main class="container store-container">
+    <div>
+        <form method="GET" action="">
+            <input type="search" id="search" name="search" placeholder="Search" value={{ request.GET.search }}>
+        </form>
+    </div>
+    <div></div>
+
+    <div class="grid-store">
+        {% for product in products %}
+            <article>
+                <div class="image-div">
+                    <a href="{% url 'product' product.id %}" class="no-href-style">
+                        <img src="{{ product.image.url }}" class="cover medium-img" />
+                    </a>
+                </div>
+                <h4 class="name">
+                    {{product.name}}
+                </h4>
+                <hr>
+                <div class="price-buy-btn">
+                    <strong>
+                        {{product.price}}$
+                    </strong>
+                    <div class="action-btns">
+                        <a href="{% url 'product' product.id %}" role="button" class="outline view-btn hover-eff-btn">
+                            View
+                        </a>
+                        <button class="contrast outline buy-btn hover-eff-btn update-item" data-id={{product.id}} data-action="add">
+                            <span class="pointer-events-none">
+                                <i class="fa-solid fa-cart-plus hover-eff-btn"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+            </article>
+        {% endfor %}
+    </div>
+    
+    {% include 'pagination.html' %}
+</main>
+
+{% endblock content %}

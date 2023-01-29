@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+	
+{% block title %}
+	<title>Cart</title>
+{% endblock title %}
+
+{% block content %}
+<main class="container cart-main">
+	<article class="grid cart-grid">
+		<div>
+			<h1>Cart</h1>
+			{% if order.get_order_quantity > 0 %}
+
+			<form method="POST">
+				{% csrf_token %}
+			
+
+			{% if not request.user.is_authenticated %}
+				<details open>
+					<summary>Contact Information</summary>
+					{% for field in contactInfoForm %}
+						{{field}}
+					{% endfor %}
+				</details>
+			{% endif %}
+
+			<details open>
+				<summary>Shipping Information</summary>
+
+				{% for field in form %}
+					{{field}}
+				{% endfor %}
+			</details>
+
+			
+			<button type="submit" class="contrast">Continue</button>
+			</form>
+			{% endif %}
+
+
+		</div>
+		<div class="cart-info">
+			<hgroup>
+				<h2>Total: ${{order.get_order_total}}</h2>
+				<h2>Items: {{order.get_order_quantity}}</h2>
+			</hgroup>
+			<div class="goods">
+
+				{% for item in order_items %}
+				<div class="order-item">
+					<div class="image-div">
+						<img
+							src="static/images/iphone_14_pro_max.png"
+							class="cover small-img"
+						/>
+					</div>
+					<div>{{item.product}}</div>
+					<div>{{item.quantity}}x</div>
+					<div>{{item.product.price}}$</div>
+					<div>{{item.get_total}}$</div>
+					<div class="update-item-arrows">
+						<i class="fa-solid fa-caret-up update-item"  data-id={{item.product.id}} data-action="add"></i>
+						<i class="fa-solid fa-caret-down update-item" data-id={{item.product.id}} data-action="remove"></i>
+					</div>
+				</div>
+				<hr />
+
+				{% endfor %}
+			</div>
+		</div>
+	</article>
+</main>
+
+{% endblock content %}

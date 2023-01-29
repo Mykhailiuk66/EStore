@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block title %}
+	<title>{{action}}</title>
+{% endblock title %}
+
+{% block content %}
+	<main class="container form-main">
+		<article class="form-container">
+			<div>
+				<h1>{{action}}</h1>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{% for field in form %}
+
+					{{field}}
+				{% endfor %}
+				
+				<!-- <input type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="nickname" required=""> -->
+
+				<br><br>
+				<button type="submit" class="contrast">{{action}}</button>
+			</form>
+			</div>
+		</article>
+	</main>
+{% endblock content %}

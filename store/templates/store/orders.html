@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    <title>Orders</title>
+{% endblock title %}
+
+
+{% block content %}
+<main class="container">
+    <h1>Orders</h1>
+
+    <div>
+        <article class="">
+            {% for order in orders %}
+                <details>
+                    <summary>Order: {{order.id}}</summary>
+                    <hr>
+
+                    {% for orderItem in order.orderitem_set.all %}
+                    <div class="order-item-history">
+
+                        <div class="image-div">
+                            <img src="{{ orderItem.product.image.url }}" class="cover small-img" />
+                        </div>
+                        <div>
+                            {{orderItem.product.name}}
+                        </div>
+                        <div>
+                            {{orderItem.quantity}}x
+                        </div>
+                        <div>
+                            {{orderItem.get_total}}x
+                        </div>
+                    </div>
+                    {% if not forloop.last %}
+                        <hr>
+                    {% endif %}
+                    {% endfor %}
+
+                </details>
+            {% endfor %}
+            
+        </article>
+    </div>
+</main>
+
+{% endblock content %}
