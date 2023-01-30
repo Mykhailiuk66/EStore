@@ -190,3 +190,8 @@ article {
 .update-item-arrows{
 	display: grid;
 }
+
+.error-message{
+	text-align: center;
+    margin: 0;
+}
