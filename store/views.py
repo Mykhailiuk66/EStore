@@ -39,6 +39,7 @@ class StoreView(ListView):
 class ProductView(DetailView):
     template_name = "store/single-product.html"
     model = Product
+    
 
 
 @method_decorator(ensure_csrf_cookie, name="dispatch")

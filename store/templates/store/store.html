@@ -21,7 +21,7 @@
         {% for product in products %}
             <article>
                 <div class="image-div">
-                    <a href="{% url 'product' product.id %}" class="no-href-style">
+                    <a href="{% url 'product' product.slug %}" class="no-href-style">
                         <img src="{{ product.image.url }}" class="cover medium-img" />
                     </a>
                 </div>
@@ -34,7 +34,7 @@
                         {{product.price}}$
                     </strong>
                     <div class="action-btns">
-                        <a href="{% url 'product' product.id %}" role="button" class="outline view-btn hover-eff-btn">
+                        <a href="{% url 'product' product.slug %}" role="button" class="outline view-btn hover-eff-btn">
                             View
                         </a>
                         <button class="contrast outline buy-btn hover-eff-btn update-item" data-id={{product.id}} data-action="add">
