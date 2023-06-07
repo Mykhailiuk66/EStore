@@ -122,3 +122,21 @@ function updateItemCookie(productId, action) {
 
 	location.reload();
 }
+
+
+// function createCookieCart() {
+// 	let existingCart = getCookie("cart"); // Check if a cart cookie already exists
+  
+// 	if (!existingCart) {
+// 	  let cart = {}; // Create an empty cart object
+  
+// 	  // Set the initial value of the "cart" cookie with the empty cart object
+// 	  setCookie("cart", JSON.stringify(cart));
+  
+// 	  console.log("Cookie cart created!");
+// 	} else {
+// 	  console.log("Cookie cart already exists!");
+// 	}
+//   }
+  
+  
